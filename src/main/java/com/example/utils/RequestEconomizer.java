@@ -20,19 +20,19 @@ public class RequestEconomizer {
         return new Date().getTime() - history.get(request).timestamp < updateTime;
     }
 
-    public void save(String request, String response) {
+    public void save(String request, double response) {
         history.put(request, new ResponseDto(response, new Date().getTime()));
     }
 
-    public String getFromCache(String request) {
+    public double getFromCache(String request) {
         return history.get(request).response;
     }
 
     private class ResponseDto {
         final long timestamp;
-        final String response;
+        final double response;
 
-        public ResponseDto(String response, long timestamp) {
+        public ResponseDto(double response, long timestamp) {
             this.response = response;
             this.timestamp = timestamp;
         }

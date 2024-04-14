@@ -51,13 +51,13 @@ public class CoinCapApi implements CurrencyApi {
         return currencyUrlMap.keySet();
     }
 
-    public String getPrice(String currency) {
+    public double getPrice(String currency) {
         assert !currencyUrlMap.containsKey(currency);
         String url = currencyUrlMap.get(currency);
         if (economizer.isEconomizable(url))
             return economizer.getFromCache(url);
         String response = requestSender.send(url);
-        String value = jsonParser.parse(response, "data.rateUsd");
+        double value = Double.parseDouble(jsonParser.parse(response, "data.rateUsd"));
         economizer.save(url, value);
         return value;
     }

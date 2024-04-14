@@ -13,5 +13,5 @@ public interface CurrencyApi {
 
     Set<String> getCurrencies();
 
-    String getPrice(String currency);
+    double getPrice(String currency);
 }
